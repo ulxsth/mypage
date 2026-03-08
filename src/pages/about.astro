@@ -165,25 +165,26 @@ const timelineData = [
 							/>
 						</div>
 					</div>
-				</div>
 
-				<div class="timeline-section">
-					<h2 class="section-title">Timeline</h2>
-					<div class="timeline-list">
-						{
-							timelineData.map((item) => (
-								<div class="timeline-item">
-									<div class="timeline-year">{item.year}</div>
-									<div
-										class="timeline-content"
-										set:html={marked.parse(item.content)}
-									/>
-								</div>
-							))
-						}
+					<div class="timeline-section">
+						<h2 class="section-title">Timeline</h2>
+						<div class="timeline-list">
+							{
+								timelineData.map((item) => (
+									<div class="timeline-item">
+										<div class="timeline-year">{item.year}</div>
+										<div
+											class="timeline-content"
+											set:html={marked.parse(item.content)}
+										/>
+									</div>
+								))
+							}
+						</div>
 					</div>
 				</div>
 			</article>
 		</main>
+		<Footer />
 	</body>
 </html>
