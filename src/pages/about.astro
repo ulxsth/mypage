@@ -11,26 +11,22 @@ const timelineData = [
 		year: "2020",
 		title: "プログラミング学習開始",
 		description: "初めてHTMLとCSSを書き、Webの仕組みに感動する。",
-		iconUrl: "https://cdn-icons-png.flaticon.com/512/1005/1005141.png",
 	},
 	{
 		year: "2022",
 		title: "Node.jsとの出会い",
 		description:
 			"JavaScriptでサーバーサイドが書けることに衝撃を受け、バックエンド開発にのめり込む。",
-		iconUrl: "https://cdn-icons-png.flaticon.com/512/919/919832.png",
 	},
 	{
 		year: "2024",
 		title: "インフラ構築に興味を持つ",
 		description: "自宅サーバーを建ててネットワーク周りの知識を深める。",
-		iconUrl: "https://cdn-icons-png.flaticon.com/512/2888/2888691.png",
 	},
 	{
 		year: "2026",
 		title: "Astroでブログ開設",
 		description: "備忘録や日々の記録を残すためのサイトを開設。",
-		iconUrl: "https://cdn-icons-png.flaticon.com/512/3721/3721262.png",
 	},
 ];
 ---
@@ -136,27 +132,18 @@ const timelineData = [
 
 				<div class="timeline-section">
 					<h2 class="section-title">Timeline</h2>
-					<div class="timeline-wrapper">
-						<div class="timeline-scroll">
-							{
-								timelineData.map((item, index) => (
-									<div class="timeline-node-container">
-										<div class="timeline-node">
-											<img src={item.iconUrl} alt={item.title} />
-											<div class="timeline-tooltip">
-												<div class="tooltip-year">{item.year}</div>
-												<div class="tooltip-title">{item.title}</div>
-												<div class="tooltip-desc">{item.description}</div>
-											</div>
-										</div>
-										<div class="timeline-year-label">{item.year}</div>
-										{index < timelineData.length - 1 && (
-											<div class="timeline-connector" />
-										)}
+					<div class="timeline-list">
+						{
+							timelineData.map((item) => (
+								<div class="timeline-item">
+									<div class="timeline-year">{item.year}</div>
+									<div class="timeline-content">
+										<div class="timeline-title">{item.title}</div>
+										<div class="timeline-desc">{item.description}</div>
 									</div>
-								))
-							}
-						</div>
+								</div>
+							))
+						}
 					</div>
 				</div>
 			</article>
@@ -168,7 +155,6 @@ const timelineData = [
 			.timeline-section {
 				margin-top: 4em;
 				padding-top: 2em;
-				border-top: 1px solid rgb(var(--gray-light));
 			}
 
 			.section-title {
@@ -177,131 +163,49 @@ const timelineData = [
 				font-size: 1.8em;
 			}
 
-			.timeline-wrapper {
-				width: 100%;
-				overflow-x: auto;
-				/* スクロールバーをおしゃれにする設定 */
-				padding-bottom: 2em;
-			}
-
-			/* Webkitのスクロールバーカスタマイズ */
-			.timeline-wrapper::-webkit-scrollbar {
-				height: 8px;
-			}
-			.timeline-wrapper::-webkit-scrollbar-track {
-				background: rgb(var(--gray-light));
-				border-radius: 4px;
-			}
-			.timeline-wrapper::-webkit-scrollbar-thumb {
-				background: var(--accent);
-				border-radius: 4px;
-			}
-
-			.timeline-scroll {
-				display: inline-flex;
-				align-items: flex-start;
-				padding: 2em 1em; /* ツールチップがはみ出ないように上下に余白を設ける */
-				min-width: 100%; /* 中身が少なくても左寄せ・中央寄せなどをコントロールしやすくする */
-				box-sizing: border-box;
-			}
-
-			.timeline-node-container {
+			.timeline-list {
 				display: flex;
 				flex-direction: column;
-				align-items: center;
-				position: relative;
+				gap: 1.5em;
+				max-width: 600px;
+				margin: 0 auto;
 			}
 
-			.timeline-connector {
-				position: absolute;
-				top: 30px; /* ノードの高さの半分 */
-				left: 50%;
-				width: 250px; /* ノード間の距離 */
-				height: 4px;
-				background-color: var(--accent);
-				/* Zインデックスでノードの後ろに置く */
-				z-index: 1;
-			}
-
-			.timeline-node {
-				width: 60px;
-				height: 60px;
-				border-radius: 50%;
-				background-color: white;
-				border: 4px solid var(--accent);
+			.timeline-item {
 				display: flex;
-				justify-content: center;
-				align-items: center;
-				position: relative;
-				z-index: 2; /* コネクタの上に表示 */
-				cursor: pointer;
-				margin: 0 95px; /* (250px - 60px) / 2 でコネクタの幅と合わせる */
+				gap: 1.5em;
+				align-items: baseline;
 			}
 
-			.timeline-node img {
-				width: 32px;
-				height: 32px;
-				object-fit: contain;
-			}
-
-			.timeline-year-label {
-				margin-top: 1em;
+			.timeline-year {
 				font-weight: bold;
-				color: rgb(var(--gray));
-			}
-
-			/* ツールチップのデザイン */
-			.timeline-tooltip {
-				position: absolute;
-				bottom: 120%; /* ノードの上に出す */
-				left: 50%;
-				transform: translateX(-50%) translateY(10px);
-				background-color: rgb(var(--gray-dark));
-				color: white;
-				padding: 1em;
-				border-radius: 8px;
-				width: 200px;
-				opacity: 0;
-				visibility: hidden;
-				transition: all 0.3s ease;
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-				pointer-events: none; /* ホバーの邪魔をしない */
-			}
-
-			/* ツールチップの吹き出ししっぽ部分 */
-			.timeline-tooltip::after {
-				content: "";
-				position: absolute;
-				top: 100%;
-				left: 50%;
-				margin-left: -8px;
-				border-width: 8px;
-				border-style: solid;
-				border-color: rgb(var(--gray-dark)) transparent transparent transparent;
-			}
-
-			.timeline-node:hover .timeline-tooltip {
-				opacity: 1;
-				visibility: visible;
-				transform: translateX(-50%) translateY(0);
-			}
-
-			.tooltip-year {
-				font-size: 0.8em;
 				color: var(--accent);
-				margin-bottom: 0.2em;
+				flex: 0 0 5em;
 			}
 
-			.tooltip-title {
+			.timeline-content {
+				flex: 1;
+			}
+
+			.timeline-title {
 				font-weight: bold;
-				margin-bottom: 0.5em;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-				padding-bottom: 0.5em;
+				font-size: 1.1em;
+				margin-bottom: 0.3em;
 			}
 
-			.tooltip-desc {
-				font-size: 0.85em;
-				line-height: 1.4;
+			.timeline-desc {
+				color: rgb(var(--gray-dark));
+				line-height: 1.6;
+			}
+
+			@media (max-width: 720px) {
+				.timeline-item {
+					flex-direction: column;
+					gap: 0.5em;
+				}
+				.timeline-year {
+					flex: none;
+				}
 			}
 		</style>
 	</body>
