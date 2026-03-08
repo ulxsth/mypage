@@ -36,10 +36,18 @@ const posts = (await getCollection("blog"))
 			}
 			ul li {
 				width: calc(50% - 1rem);
+				background: #ffffff;
+				border-radius: 12px;
+				box-shadow: 0 4px 10px rgba(var(--black), 0.05);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+				overflow: hidden;
+			}
+			ul li:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--box-shadow);
 			}
 			ul li * {
 				text-decoration: none;
-				transition: 0.2s ease;
 			}
 			ul li:first-child {
 				width: 100%;
@@ -48,16 +56,27 @@ const posts = (await getCollection("blog"))
 			}
 			ul li:first-child img {
 				width: 100%;
+				border-radius: 12px 12px 0 0;
 			}
 			ul li:first-child .title {
 				font-size: 2.369rem;
 			}
 			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
+				margin: 0;
+				border-radius: 12px 12px 0 0;
+				width: 100%;
+				display: block;
 			}
 			ul li a {
 				display: block;
+				height: 100%;
+				color: inherit;
+			}
+			.card-content {
+				padding: 1.5rem;
+			}
+			ul li:first-child .card-content {
+				padding: 2rem;
 			}
 			.title {
 				margin: 0;
@@ -70,10 +89,7 @@ const posts = (await getCollection("blog"))
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+				color: var(--accent);
 			}
 			.more-link {
 				display: block;
@@ -121,10 +137,12 @@ const posts = (await getCollection("blog"))
 											alt=""
 										/>
 									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
+									<div class="card-content">
+										<h4 class="title">{post.data.title}</h4>
+										<p class="date">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+									</div>
 								</a>
 							</li>
 						))
