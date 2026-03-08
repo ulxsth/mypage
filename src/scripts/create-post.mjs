@@ -25,19 +25,12 @@ if (fs.existsSync(targetPath)) {
   process.exit(1);
 }
 
-// 現在の日時を取得
-const now = new Date();
-const formattedDate = now.toLocaleDateString('en-US', {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric'
-}).replace(',', ''); // "Mar 09 2026" の形式 (Astroのデフォルト形式に合わせる)
+// 現在の日時はフロントマターに埋め込まず、ファイル更新日時を自動利用させる
 
 // テンプレートの生成 (content.config.ts のスキーマに準拠)
 const template = `---
 title: '${slug} の記事'
 description: 'ここに記事の説明(description)を入力します。'
-pubDate: '${formattedDate}'
 icon: '📝'
 # heroImage: '/blog-placeholder-1.jpg'
 ---
