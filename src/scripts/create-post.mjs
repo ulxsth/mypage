@@ -38,6 +38,7 @@ const template = `---
 title: '${slug} の記事'
 description: 'ここに記事の説明(description)を入力します。'
 pubDate: '${formattedDate}'
+icon: '📝'
 # heroImage: '/blog-placeholder-1.jpg'
 ---
 
