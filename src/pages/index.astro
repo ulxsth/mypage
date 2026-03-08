@@ -86,6 +86,25 @@ const posts = (await getCollection("blog"))
 				color: rgb(var(--gray));
 			}
 
+			.tags-container {
+				display: flex;
+				gap: 0.5rem;
+				align-items: center;
+				margin-left: 0.5rem;
+			}
+			.tag-badge {
+				background: rgba(var(--gray-light), 0.5);
+				color: rgb(var(--gray-dark));
+				padding: 0.1rem 0.6rem;
+				border-radius: 12px;
+				font-size: 0.8rem;
+				text-decoration: none;
+				transition: background 0.2s;
+			}
+			.tag-badge:hover {
+				background: var(--accent);
+				color: white;
+			}
 			ul li a:hover .title {
 				color: var(--accent);
 			}
@@ -135,6 +154,13 @@ const posts = (await getCollection("blog"))
 										<h4 class="title">{post.data.title}</h4>
 										<div class="meta">
 											<FormattedDate date={post.data.pubDate} />
+											{post.data.tags && post.data.tags.length > 0 && (
+												<div class="tags-container">
+													{post.data.tags.map((tag: string) => (
+														<span class="tag-badge">{tag}</span>
+													))}
+												</div>
+											)}
 										</div>
 									</div>
 								</a>

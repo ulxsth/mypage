@@ -39,6 +39,7 @@ title: '${slug} の記事'
 description: 'ここに記事の説明(description)を入力します。'
 pubDate: '${formattedDate}'
 icon: '📝'
+tags: ['Astro']
 # heroImage: '/blog-placeholder-1.jpg'
 ---
 

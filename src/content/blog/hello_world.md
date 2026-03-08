@@ -1,8 +1,9 @@
 ---
 title: 'きじサンプル'
 description: 'ここに記事の説明(description)を入力します。'
-pubDate: 'Mar 9 2026'
+# pubDate: 'Mar 9 2026'
 icon: '👋'
+tags: ['Astro', 'Blog']
 # heroImage: '/blog-placeholder-1.jpg'
 ---
 
