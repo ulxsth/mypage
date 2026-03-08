@@ -89,53 +89,8 @@ const timelineData = [
 					display: inline-block;
 				}
 			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="prose">
-					<div class="about-container">
-						<div class="about-content">
-							<h3>よつ (@ulxsth)</h3>
-							<ul>
-								<li>趣味: 開発、ゲーム</li>
-								<li>好きな技術: Node.js, Astro</li>
-								<li>興味あること: ネットワーク, インフラ構築</li>
-							</ul>
-						</div>
-						<div class="about-icon">
-							<img
-								src="https://pbs.twimg.com/profile_images/1762092141843722240/BfwOdl39_400x400.jpg"
-								alt="yotu icon"
-							/>
-						</div>
-					</div>
-				</div>
 
-				<div class="timeline-section">
-					<h2 class="section-title">Timeline</h2>
-					<div class="timeline-list">
-						{
-							timelineData.map((item) => (
-								<div class="timeline-item">
-									<div class="timeline-year">{item.year}</div>
-									<div
-										class="timeline-content"
-										set:html={marked.parse(item.content)}
-									/>
-								</div>
-							))
-						}
-					</div>
-				</div>
-			</article>
-		</main>
-		<Footer />
-		<style>
-			/* 既存のstyleの最後に追加 */
-
+			/* --- Timeline Styles --- */
 			.timeline-section {
 				margin-top: 4em;
 				padding-top: 2em;
@@ -188,5 +143,47 @@ const timelineData = [
 				}
 			}
 		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="prose">
+					<div class="about-container">
+						<div class="about-content">
+							<h3>よつ (@ulxsth)</h3>
+							<ul>
+								<li>趣味: 開発、ゲーム</li>
+								<li>すきな技術: Node.js</li>
+								<li>座右の銘：ひよこ将棋 マスター帯</li>
+							</ul>
+						</div>
+						<div class="about-icon">
+							<img
+								src="https://pbs.twimg.com/profile_images/1762092141843722240/BfwOdl39_400x400.jpg"
+								alt="yotu icon"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="timeline-section">
+					<h2 class="section-title">Timeline</h2>
+					<div class="timeline-list">
+						{
+							timelineData.map((item) => (
+								<div class="timeline-item">
+									<div class="timeline-year">{item.year}</div>
+									<div
+										class="timeline-content"
+										set:html={marked.parse(item.content)}
+									/>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</article>
+		</main>
 	</body>
 </html>
