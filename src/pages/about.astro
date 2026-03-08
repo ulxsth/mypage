@@ -7,10 +7,10 @@ import Layout from "../layouts/BlogPost.astro";
 
 // 経歴データ
 const timelineData = [
-	{ year: "2020", content: "プログラミング学習開始" },
-	{ year: "2022", content: "Node.jsでのバックエンド開発にのめり込む" },
-	{ year: "2024", content: "自宅サーバーでのインフラ構築" },
-	{ year: "2026", content: "Astroでブログ開設" },
+	{
+		year: "2026.4",
+		content: "<a href='https://karabiner.tech/'>karabiner.inc</a> 入社",
+	},
 ];
 ---
 
@@ -120,7 +120,7 @@ const timelineData = [
 							timelineData.map((item) => (
 								<div class="timeline-item">
 									<div class="timeline-year">{item.year}</div>
-									<div class="timeline-content">{item.content}</div>
+									<div class="timeline-content" set:html={item.content} />
 								</div>
 							))
 						}
