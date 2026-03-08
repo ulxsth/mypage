@@ -5,6 +5,10 @@
 *   **Framework**: [Astro](https://astro.build/)
 *   **Hosting**: Cloudflare Pages
 
+## 記事の作成
+*   `npm run new <記事名>` で記事のテンプレートを作成
+*   `src/content/blog/` に記事が作成される
+
 ## デプロイ
 1.  ローカルでMarkdown記事を作成・推敲
 2.  GitHubリポジトリへコミット＆プッシュ
