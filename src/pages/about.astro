@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Layout from "../layouts/BlogPost.astro";
+import { marked } from "marked";
 
 // 経歴データ
 const timelineData = [
@@ -120,7 +121,10 @@ const timelineData = [
 							timelineData.map((item) => (
 								<div class="timeline-item">
 									<div class="timeline-year">{item.year}</div>
-									<div class="timeline-content" set:html={item.content} />
+									<div
+										class="timeline-content"
+										set:html={marked.parse(item.content)}
+									/>
 								</div>
 							))
 						}
@@ -167,6 +171,11 @@ const timelineData = [
 			.timeline-content {
 				flex: 1;
 				color: rgb(var(--gray-dark));
+			}
+
+			/* Markdown由来のpタグマージンを消すスタイルを追加 */
+			.timeline-content p {
+				margin: 0;
 			}
 
 			@media (max-width: 720px) {
