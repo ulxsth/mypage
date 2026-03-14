@@ -7,7 +7,7 @@ import Header from "../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
 // ブログ記事を取得し、日付が新しい順に並び替え、先頭5件を取得
-const posts = (await getCollection("blog"))
+const posts = (await getCollection("blog", ({ data }) => data.published === true))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 5);
 ---
