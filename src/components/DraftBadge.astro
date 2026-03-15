@@ -1,0 +1,26 @@
+---
+interface Props {
+	isDraft?: boolean;
+}
+
+const { isDraft = false } = Astro.props;
+---
+
+{
+	isDraft && <span class="draft-badge">Draft</span>
+}
+
+<style>
+	.draft-badge {
+		display: inline-block;
+		margin-left: 0.5rem;
+		padding: 0.1rem 0.5rem;
+		border-radius: 999px;
+		background: rgba(var(--accent-orange), 0.6);
+		color: rgb(255, 255, 255);
+		font-size: 0.75rem;
+		font-weight: 700;
+		line-height: 1.4;
+		vertical-align: middle;
+	}
+</style>

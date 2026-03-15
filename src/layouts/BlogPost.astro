@@ -2,13 +2,14 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
+import DraftBadge from "../components/DraftBadge.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage, tags } =
+const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 	Astro.props;
 ---
 
@@ -45,6 +46,12 @@ const { title, description, pubDate, updatedDate, heroImage, tags } =
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+			}
+			.title-row {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-wrap: wrap;
 			}
 			.date {
 				margin-bottom: 0.5em;
@@ -98,7 +105,10 @@ const { title, description, pubDate, updatedDate, heroImage, tags } =
 								)
 							}
 						</div>
-						<h1>{title}</h1>
+						<div class="title-row">
+							<h1>{title}</h1>
+							<DraftBadge isDraft={!published} />
+						</div>
 						{
 							tags && tags.length > 0 && (
 								<div class="tags-container">

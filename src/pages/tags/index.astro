@@ -4,8 +4,9 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
+import { shouldIncludePost } from "../../content/visibility";
 
-const allPosts = await getCollection("blog", ({ data }) => data.published === true);
+const allPosts = await getCollection("blog", ({ data }) => shouldIncludePost(data.published));
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())].filter(
   Boolean
 );
