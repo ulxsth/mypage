@@ -4,7 +4,6 @@ description: 'gh を使って、issue の作成から紐づいたブランチの
 pubDate: 'Mar 16 2026'
 icon: '🐙'
 tags: ['git', 'github', 'gh']
-# heroImage: '/blog-placeholder-1.jpg'
 ---
 
 # はじめに
@@ -75,7 +74,7 @@ https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian
 gh issue create
 ```
 
-(ここにキャプチャ)
+<video autoplay muted loop controls src="https://i.imgur.com/iM08bPz.mp4" title="https://i.imgur.com/iM08bPz.mp4"></video>
 
 ちなみに gh のデフォルトエディタは nano になっているんですが、以下のコマンドで vim とかに変更できます。
 
@@ -85,3 +84,44 @@ gh config set editor vim
 
 github 側で確認してみると、ちゃんと issue が生えてるのが確認できます。
 
+![https://i.imgur.com/jQrbfhQ.png](https://i.imgur.com/jQrbfhQ.png)
+
+# issue に紐づいたブランチを作成する
+これは人によりますが、だいたい 1 issue につき 1 ブランチで作業してると思います。
+issue に紐づいたブランチを作成することで、PR merge 時に自動で削除されるなどのメリットがあります。
+
+さて、これも gh でできます。
+
+```sh
+gh issue develop <issue-id>  -n <branch-name> -c
+```
+
+`-n` を付けずに送信した場合、デフォルトのブランチ名（1-Issueのタイトル）が使われます。タイトルが日本語の場合 CLI とかで扱いづらい名前になっちゃうので、英数字でつけなおすことを推奨します。
+`-c` をつけることで、作成後に自動でチェックアウトしてくれます。
+
+<video autoplay muted loop controls src="https://i.imgur.com/9lCm4oK.mp4" title="Title"></video>
+
+# PR を作成する
+さて、issue で定めた作業が終わったとします。
+gh で PR を作成する場合は以下のようになります。
+
+```sh
+gh pr create
+```
+
+これも issue の作成とおなじく対話形式で書けます。
+
+<video autoplay muted loop controls src="https://i.imgur.com/GkNcZcB.mp4" title="Title"></video>
+
+# PR のマージ
+個人開発などでとくにレビューも必要ない場合、gh からさくっとマージすることが多いです。
+以下で現在チェックイン中のブランチをマージします。
+
+```sh
+gh pr merge
+```
+
+<video autoplay muted loop controls src="https://i.imgur.com/E5n9OO1.mp4" title="Title"></video>
+
+# 参照
+https://github.com/cli/cli
