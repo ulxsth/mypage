@@ -4,10 +4,11 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
+import { shouldIncludePost } from "../../content/visibility";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog", ({ data }) => data.published === true);
+  const allPosts = await getCollection("blog", ({ data }) => shouldIncludePost(data.published));
   const tags = [
     ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ].filter(Boolean);
