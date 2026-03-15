@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
+import DraftBadge from "../../components/DraftBadge.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
@@ -98,6 +99,11 @@ const { posts } = Astro.props;
         font-weight: bold;
         transition: color 0.2s ease;
       }
+      .title-wrap {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
       .meta {
         display: flex;
         align-items: center;
@@ -140,7 +146,10 @@ const { posts } = Astro.props;
                 <a href={`/blog/${post.id}/`}>
                   <div class="post-icon">{post.data.icon || "📝"}</div>
                   <div class="post-content">
-                    <h4 class="title">{post.data.title}</h4>
+                    <div class="title-wrap">
+                      <h4 class="title">{post.data.title}</h4>
+                      <DraftBadge isDraft={!post.data.published} />
+                    </div>
                     <div class="meta">
                       <FormattedDate date={post.data.pubDate} />
                     </div>
