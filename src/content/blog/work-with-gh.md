@@ -4,6 +4,7 @@ description: 'gh を使って、issue の作成から紐づいたブランチの
 pubDate: 'Mar 16 2026'
 icon: '🐙'
 tags: ['git', 'github', 'gh']
+published: true
 ---
 
 # はじめに
