@@ -98,6 +98,96 @@ p {
 	margin-bottom: 2em;
 }
 
+.remark-link-card-plus__container {
+	margin: 1.5em 0;
+}
+
+.remark-link-card-plus__card {
+	display: flex;
+	align-items: stretch;
+	gap: 0;
+	border: 1px solid rgb(var(--gray-light));
+	border-radius: 12px;
+	overflow: hidden;
+	background: #fff;
+	color: inherit;
+	text-decoration: none;
+	box-shadow: 0 6px 20px rgba(var(--gray), 12%);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.remark-link-card-plus__card:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 10px 28px rgba(var(--gray), 18%);
+}
+
+.remark-link-card-plus__thumbnail {
+	width: 116px;
+	flex: 0 0 116px;
+	align-self: stretch;
+	border-radius: 12px 0 0 12px;
+	overflow: hidden;
+	background: rgb(var(--gray-light));
+}
+
+.remark-link-card-plus__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: left center;
+	border-radius: 0;
+}
+
+.remark-link-card-plus__main {
+	min-width: 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.35rem;
+	padding: 0.9rem;
+}
+
+.remark-link-card-plus__title {
+	font-size: 0.95rem;
+	font-weight: 700;
+	line-height: 1.35;
+	color: rgb(var(--black));
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.remark-link-card-plus__description {
+	font-size: 0.82rem;
+	line-height: 1.45;
+	color: rgb(var(--gray));
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.remark-link-card-plus__meta {
+	margin-top: 0.1rem;
+	font-size: 0.78rem;
+	color: rgb(var(--gray));
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.remark-link-card-plus__favicon {
+	display: none;
+}
+
+.remark-link-card-plus__url {
+	color: rgb(var(--gray-dark));
+}
+
 textarea {
 	width: 100%;
 	font-size: 16px;
@@ -206,6 +296,19 @@ hr {
 
 	main {
 		padding: 1em;
+	}
+
+	.remark-link-card-plus__card {
+		gap: 0;
+	}
+
+	.remark-link-card-plus__thumbnail {
+		width: 84px;
+		flex-basis: 84px;
+	}
+
+	.remark-link-card-plus__main {
+		padding: 0.75rem;
 	}
 }
 
