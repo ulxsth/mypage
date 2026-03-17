@@ -85,7 +85,7 @@ gh config set editor vim
 
 github 側で確認してみると、ちゃんと issue が生えてるのが確認できます。
 
-![https://i.imgur.com/jQrbfhQ.png](https://i.imgur.com/jQrbfhQ.png)
+![](https://i.imgur.com/jQrbfhQ.png)
 
 # issue に紐づいたブランチを作成する
 これは人によりますが、だいたい 1 issue につき 1 ブランチで作業してると思います。
