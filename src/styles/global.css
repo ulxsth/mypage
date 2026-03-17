@@ -54,23 +54,27 @@ h6 {
 }
 
 h1 {
-	font-size: 3.052em;
+	font-size: 2.011em;
 }
 
 h2 {
-	font-size: 2.441em;
+	font-size: 1.749em;
 }
 
 h3 {
-	font-size: 1.953em;
+	font-size: 1.521em;
 }
 
 h4 {
-	font-size: 1.563em;
+	font-size: 1.323em;
 }
 
 h5 {
-	font-size: 1.25em;
+	font-size: 1.15em;
+}
+
+h6 {
+	font-size: 1em;
 }
 
 strong,
@@ -113,6 +117,15 @@ img {
 	border-radius: 8px;
 }
 
+.prose video {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+	margin: 2em 0;
+}
+
 code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
@@ -122,6 +135,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	font-size: 0.8em;
 }
 
 pre>code {
