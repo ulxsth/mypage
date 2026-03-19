@@ -37,7 +37,7 @@ const posts = (await getCollection("blog", ({ data }) => shouldIncludePost(data.
 			}
 			ul li {
 				width: 100%;
-				border-bottom: 1px solid rgba(var(--gray), 0.2);
+				border-bottom: 1px solid rgb(from var(--gray) r g b / 0.2);
 			}
 			ul li:last-child {
 				border-bottom: none;
@@ -55,7 +55,7 @@ const posts = (await getCollection("blog", ({ data }) => shouldIncludePost(data.
 				transition: background 0.2s ease;
 			}
 			ul li a:hover {
-				background: rgba(var(--gray-light), 0.3);
+				background: rgb(from var(--gray-light) r g b / 0.3);
 			}
 			.post-icon {
 				flex: 0 0 80px;
@@ -74,7 +74,7 @@ const posts = (await getCollection("blog", ({ data }) => shouldIncludePost(data.
 			}
 			.title {
 				margin: 0 0 0.5rem 0;
-				color: rgb(var(--black));
+				color: var(--black);
 				line-height: 1.4;
 				font-size: 1.35rem;
 				font-weight: bold;
@@ -90,7 +90,7 @@ const posts = (await getCollection("blog", ({ data }) => shouldIncludePost(data.
 				align-items: center;
 				gap: 0.6rem;
 				font-size: 0.95rem;
-				color: rgb(var(--gray));
+				color: var(--gray);
 			}
 
 			.tags-container {
@@ -100,8 +100,8 @@ const posts = (await getCollection("blog", ({ data }) => shouldIncludePost(data.
 				margin-left: 0.5rem;
 			}
 			.tag-badge {
-				background: rgba(var(--gray-light), 0.5);
-				color: rgb(var(--gray-dark));
+				background: rgb(from var(--gray-light) r g b / 0.5);
+				color: var(--gray-dark);
 				padding: 0.1rem 0.6rem;
 				border-radius: 12px;
 				font-size: 0.8rem;

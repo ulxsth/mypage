@@ -36,7 +36,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 1em;
-				color: rgb(var(--gray-dark));
+				color: var(--gray-dark);
 			}
 			.title {
 				margin-bottom: 1em;
@@ -55,7 +55,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: var(--gray);
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -67,8 +67,8 @@ const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 				margin: 1rem 0;
 			}
 			.tag-badge {
-				background: rgba(var(--gray-light), 0.5);
-				color: rgb(var(--gray-dark));
+				background: rgb(from var(--gray-light) r g b / 0.5);
+				color: var(--gray-dark);
 				padding: 0.2rem 0.8rem;
 				border-radius: 12px;
 				font-size: 0.9rem;
