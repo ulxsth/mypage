@@ -3,6 +3,7 @@
 
 <div class="comment-section">
   <h3>コメントを送信</h3>
+  <small>記事の感想や修正依頼等を送っていただけるとよろこびます</small>
   <form id="comment-form" class="comment-form">
     <div class="form-group">
       <label for="email">メールアドレス *</label>
@@ -156,8 +157,14 @@
     font-family: inherit;
     font-size: 1em;
     color: var(--gray-dark);
-    background-color: var(--bg-secondary, #f8f8f8);
-    transition: border-color 0.2s;
+    background-color: var(--surface);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  }
+
+  input[type='text']::placeholder,
+  input[type='email']::placeholder,
+  textarea::placeholder {
+    color: var(--gray);
   }
 
   input[type='text']:focus,
