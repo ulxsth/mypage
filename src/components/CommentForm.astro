@@ -2,8 +2,10 @@
 ---
 
 <div class="comment-section">
-  <h3>コメントを送信</h3>
-  <small>記事の感想や修正依頼等を送っていただけるとよろこびます</small>
+  <div class="comment-header">
+    <h3>コメントを送信</h3>
+    <small>記事の感想や修正依頼等を送っていただけるとよろこびます</small>
+  </div>
   <form id="comment-form" class="comment-form">
     <div class="form-group">
       <label for="email">メールアドレス *</label>
@@ -129,6 +131,10 @@
     color: var(--gray-dark);
   }
 
+  .comment-header {
+    margin-bottom: 1.5em;
+  }
+
   .comment-form {
     display: flex;
     flex-direction: column;
@@ -175,6 +181,7 @@
 
   textarea {
     resize: vertical;
+    width: auto;
     min-height: 120px;
   }
 
