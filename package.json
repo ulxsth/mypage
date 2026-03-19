@@ -10,6 +10,7 @@
     "new:article": "node src/scripts/create-post.mjs"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.13",
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
@@ -18,6 +19,7 @@
     "marked": "^17.0.4",
     "remark-breaks": "^4.0.0",
     "remark-link-card-plus": "^0.7.3",
+    "resend": "^6.9.4",
     "sharp": "^0.34.3"
   }
 }

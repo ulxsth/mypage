@@ -6,6 +6,7 @@ import DraftBadge from "../components/DraftBadge.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
+import CommentForm from "../components/CommentForm.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -13,7 +14,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 	Astro.props;
 ---
 
-<html lang="en">
+<html lang="ja">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
@@ -33,7 +34,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 			}
 			.prose {
 				width: 85%;
-				max-width: calc(100% - 2em);
+				max-width: 740px;
 				margin: auto;
 				padding: 1em;
 				color: var(--gray-dark);
@@ -125,6 +126,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, published } =
 					<slot />
 				</div>
 			</article>
+			<CommentForm />
 		</main>
 		<Footer />
 
