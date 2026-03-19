@@ -30,8 +30,8 @@ const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())].filter(
       .tag {
         display: inline-block;
         padding: 0.5em 1em;
-        background-color: rgba(var(--gray-light), 0.5);
-        color: rgb(var(--black));
+        background-color: rgb(from var(--gray-light) r g b / 0.5);
+        color: var(--black);
         border-radius: 20px;
         text-decoration: none;
         font-weight: bold;

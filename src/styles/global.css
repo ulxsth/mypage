@@ -5,16 +5,69 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--accent-orange: 255, 105, 0;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--accent: rgb(35 55 255);
+	--accent-dark: rgb(0 13 138);
+	--accent-orange: rgb(255 105 0);
+	--bg: rgb(255 255 255);
+	--surface: rgb(255 255 255);
+	--black: rgb(15 18 25);
+	--gray: rgb(96 115 159);
+	--gray-light: rgb(229 233 240);
+	--gray-dark: rgb(34 41 57);
+	--gray-gradient: rgb(from var(--gray-light) r g b / 50%), var(--bg);
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
+		0 2px 6px rgb(from var(--gray) r g b / 25%), 0 8px 24px rgb(from var(--gray) r g b / 33%), 0 16px 32px;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--accent: rgb(123 145 255);
+		--accent-dark: rgb(185 198 255);
+		--accent-orange: rgb(255 143 64);
+		--bg: rgb(15 18 25);
+		--surface: rgb(24 31 44);
+		--black: rgb(239 243 255);
+		--gray: rgb(148 163 184);
+		--gray-light: rgb(52 64 85);
+		--gray-dark: rgb(206 215 232);
+		--gray-gradient: rgb(from var(--gray-light) r g b / 42%), var(--bg);
+		--box-shadow:
+			0 2px 6px rgb(2 6 23 / 40%), 0 8px 24px rgb(2 6 23 / 45%), 0 16px 32px rgb(2 6 23 / 38%);
+		color-scheme: dark;
+	}
+}
+
+:root[data-theme='light'] {
+	--accent: rgb(35 55 255);
+	--accent-dark: rgb(0 13 138);
+	--accent-orange: rgb(255 105 0);
+	--bg: rgb(255 255 255);
+	--surface: rgb(255 255 255);
+	--black: rgb(15 18 25);
+	--gray: rgb(96 115 159);
+	--gray-light: rgb(229 233 240);
+	--gray-dark: rgb(34 41 57);
+	--gray-gradient: rgb(from var(--gray-light) r g b / 50%), var(--bg);
+	--box-shadow:
+		0 2px 6px rgb(from var(--gray) r g b / 25%), 0 8px 24px rgb(from var(--gray) r g b / 33%), 0 16px 32px;
+	color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+	--accent: rgb(123 145 255);
+	--accent-dark: rgb(185 198 255);
+	--accent-orange: rgb(255 143 64);
+	--bg: rgb(16, 19, 27);
+	--surface: rgb(24 31 44);
+	--black: rgb(239 243 255);
+	--gray: rgb(148 163 184);
+	--gray-light: rgb(52 64 85);
+	--gray-dark: rgb(206 215 232);
+	--gray-gradient: rgb(from var(--gray-light) r g b / 42%), var(--bg);
+	--box-shadow:
+		0 2px 6px rgb(2 6 23 / 40%), 0 8px 24px rgb(2 6 23 / 45%), 0 16px 32px rgb(2 6 23 / 38%);
+	color-scheme: dark;
 }
 
 body {
@@ -22,12 +75,12 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-color: var(--bg);
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
+	color: var(--gray-dark);
+	font-size: 16px;
 	line-height: 1.7;
 	display: flex;
 	flex-direction: column;
@@ -49,7 +102,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--black);
 	line-height: 1.2;
 }
 
@@ -106,19 +159,19 @@ p {
 	display: flex;
 	align-items: stretch;
 	gap: 0;
-	border: 1px solid rgb(var(--gray-light));
+	border: 1px solid var(--gray-light);
 	border-radius: 12px;
 	overflow: hidden;
-	background: #fff;
+	background: var(--surface);
 	color: inherit;
 	text-decoration: none;
-	box-shadow: 0 6px 20px rgba(var(--gray), 12%);
+	box-shadow: 0 6px 20px rgb(from var(--gray) r g b / 12%);
 	transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .remark-link-card-plus__card:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 10px 28px rgba(var(--gray), 18%);
+	box-shadow: 0 10px 28px rgb(from var(--gray) r g b / 18%);
 }
 
 .remark-link-card-plus__thumbnail {
@@ -127,7 +180,7 @@ p {
 	align-self: stretch;
 	border-radius: 12px 0 0 12px;
 	overflow: hidden;
-	background: rgb(var(--gray-light));
+	background: var(--gray-light);
 }
 
 .remark-link-card-plus__image {
@@ -152,7 +205,7 @@ p {
 	font-size: 0.95rem;
 	font-weight: 700;
 	line-height: 1.35;
-	color: rgb(var(--black));
+	color: var(--black);
 	display: -webkit-box;
 	line-clamp: 2;
 	-webkit-line-clamp: 2;
@@ -163,7 +216,7 @@ p {
 .remark-link-card-plus__description {
 	font-size: 0.82rem;
 	line-height: 1.45;
-	color: rgb(var(--gray));
+	color: var(--gray);
 	display: -webkit-box;
 	line-clamp: 2;
 	-webkit-line-clamp: 2;
@@ -174,7 +227,7 @@ p {
 .remark-link-card-plus__meta {
 	margin-top: 0.1rem;
 	font-size: 0.78rem;
-	color: rgb(var(--gray));
+	color: var(--gray);
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -185,7 +238,7 @@ p {
 }
 
 .remark-link-card-plus__url {
-	color: rgb(var(--gray-dark));
+	color: var(--gray-dark);
 }
 
 textarea {
@@ -209,16 +262,16 @@ img {
 
 .prose video {
 	display: block;
-	width: 100%;
-	max-width: 100%;
+	width: 80%;
+	max-width: 80%;
 	height: auto;
 	border-radius: 8px;
-	margin: 2em 0;
+	margin: 2em auto;
 }
 
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: var(--gray-light);
 	border-radius: 2px;
 }
 
@@ -286,7 +339,7 @@ blockquote {
 
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--gray-light);
 }
 
 @media (max-width: 720px) {

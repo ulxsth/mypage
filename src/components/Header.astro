@@ -12,25 +12,32 @@ import HeaderLink from "./HeaderLink.astro";
 			<HeaderLink href="/tags">Tags</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links">
-			<a href="https://x.com/ulxsth" target="_blank">
-				<span class="sr-only">Follow ulxsth on X</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-					></path>
-				</svg>
-			</a>
-			<a href="https://github.com/ulxsth" target="_blank">
-				<span class="sr-only">Go to ulxsth's GitHub profile</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-					></path>
-				</svg>
-			</a>
+		<div class="nav-actions">
+			<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+				<span class="sr-only theme-toggle__label">Switch theme</span>
+			</button>
+			<div class="social-links">
+				<a href="https://x.com/ulxsth" target="_blank">
+					<span class="sr-only">Follow ulxsth on X</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
+						><path
+							fill="currentColor"
+							d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+						></path>
+					</svg>
+				</a>
+				<a href="https://github.com/ulxsth" target="_blank">
+					<span class="sr-only">Go to ulxsth's GitHub profile</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
+						><path
+							fill="currentColor"
+							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+						></path>
+					</svg>
+				</a>
+			</div>
 		</div>
 	</nav>
 </header>
@@ -38,8 +45,8 @@ import HeaderLink from "./HeaderLink.astro";
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		background: var(--surface);
+		box-shadow: 0 2px 8px rgb(from var(--black) r g b / 5%);
 	}
 	h2 {
 		margin: 0;
@@ -65,6 +72,38 @@ import HeaderLink from "./HeaderLink.astro";
 		text-decoration: none;
 		border-bottom-color: var(--accent);
 	}
+	.nav-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.45rem 0.7rem;
+		border-radius: 999px;
+		border: 1px solid var(--gray-light);
+		background: var(--surface);
+		color: var(--gray-dark);
+		font: inherit;
+		cursor: pointer;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+	}
+	.theme-toggle:hover {
+		background: rgb(from var(--gray-light) r g b / 0.3);
+		border-color: var(--gray);
+	}
+	.theme-toggle__icon {
+		line-height: 1;
+	}
+	.theme-toggle__icon.is-hidden {
+		display: none;
+	}
+	.theme-toggle__label {
+		font-size: 0.85rem;
+		font-weight: 600;
+	}
 	.social-links,
 	.social-links a {
 		display: flex;
@@ -73,5 +112,50 @@ import HeaderLink from "./HeaderLink.astro";
 		.social-links {
 			display: none;
 		}
+		.theme-toggle__label {
+			display: none;
+		}
+		.theme-toggle {
+			padding: 0.45rem;
+		}
 	}
 </style>
+
+<script>
+	const root = document.documentElement;
+	const toggle = document.getElementById('theme-toggle');
+	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+	const getStoredTheme = () => {
+		const stored = localStorage.getItem('theme');
+		return stored === 'light' || stored === 'dark' ? stored : null;
+	};
+
+	const resolveTheme = (): 'light' | 'dark' => getStoredTheme() ?? (prefersDark.matches ? 'dark' : 'light');
+
+	const applyTheme = (theme: 'light' | 'dark') => {
+		root.dataset.theme = theme;
+		if (!toggle) return;
+		const isDark = theme === 'dark';
+		toggle.setAttribute('aria-pressed', String(isDark));
+		const darkIcon = toggle.querySelector('.theme-toggle__icon--dark');
+		const lightIcon = toggle.querySelector('.theme-toggle__icon--light');
+		if (darkIcon) darkIcon.classList.toggle('is-hidden', !isDark);
+		if (lightIcon) lightIcon.classList.toggle('is-hidden', isDark);
+	};
+
+	applyTheme(resolveTheme());
+
+	if (toggle) {
+		toggle.addEventListener('click', () => {
+			const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+			localStorage.setItem('theme', nextTheme);
+			applyTheme(nextTheme);
+		});
+	}
+
+	prefersDark.addEventListener('change', () => {
+		if (getStoredTheme()) return;
+		applyTheme(resolveTheme());
+	});
+</script>
