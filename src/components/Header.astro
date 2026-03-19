@@ -14,8 +14,9 @@ import HeaderLink from "./HeaderLink.astro";
 		</div>
 		<div class="nav-actions">
 			<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">
-				<span class="theme-toggle__icon" aria-hidden="true">D</span>
-				<span class="theme-toggle__label">Dark</span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+				<span class="sr-only theme-toggle__label">Switch theme</span>
 			</button>
 			<div class="social-links">
 				<a href="https://x.com/ulxsth" target="_blank">
@@ -96,6 +97,9 @@ import HeaderLink from "./HeaderLink.astro";
 	.theme-toggle__icon {
 		line-height: 1;
 	}
+	.theme-toggle__icon.is-hidden {
+		display: none;
+	}
 	.theme-toggle__label {
 		font-size: 0.85rem;
 		font-weight: 600;
@@ -134,10 +138,10 @@ import HeaderLink from "./HeaderLink.astro";
 		if (!toggle) return;
 		const isDark = theme === 'dark';
 		toggle.setAttribute('aria-pressed', String(isDark));
-		const icon = toggle.querySelector('.theme-toggle__icon');
-		const label = toggle.querySelector('.theme-toggle__label');
-		if (icon) icon.textContent = isDark ? 'L' : 'D';
-		if (label) label.textContent = isDark ? 'Light' : 'Dark';
+		const darkIcon = toggle.querySelector('.theme-toggle__icon--dark');
+		const lightIcon = toggle.querySelector('.theme-toggle__icon--light');
+		if (darkIcon) darkIcon.classList.toggle('is-hidden', !isDark);
+		if (lightIcon) lightIcon.classList.toggle('is-hidden', isDark);
 	};
 
 	applyTheme(resolveTheme());
