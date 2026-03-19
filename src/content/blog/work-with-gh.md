@@ -3,7 +3,7 @@ title: 'gh でエディタから離れずに作業する'
 description: 'gh を使って、issue の作成から紐づいたブランチの作成、PR の作成とマージを行う記事です。'
 pubDate: 'Mar 16 2026'
 icon: '🐙'
-tags: ['git', 'github', 'gh']
+tags: ['devops', 'github']
 published: true
 ---
 
