@@ -1,5 +1,7 @@
 import { Resend } from 'resend';
 
+export const prerender = false;
+
 interface CommentRequest {
   email: string;
   message: string;
@@ -7,21 +9,32 @@ interface CommentRequest {
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export async function POST({ request }: { request: Request }) {
-  // CORSチェック
-  if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+}
 
+export async function POST({ request }: { request: Request }) {
   try {
-    const body: CommentRequest = await request.json();
+    let body: CommentRequest;
+    try {
+      body = await request.json();
+    } catch {
+      return new Response(
+        JSON.stringify({ error: 'Invalid JSON body' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
     const { email, message } = body;
 
     // バリデーション
