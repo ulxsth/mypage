@@ -76,7 +76,6 @@ body {
 	padding: 0;
 	text-align: left;
 	background-color: var(--bg);
-	/* background: linear-gradient(var(--gray-gradient)) no-repeat; */
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
