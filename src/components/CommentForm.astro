@@ -6,118 +6,123 @@
     <h3>コメントを送信</h3>
     <small>記事の感想や修正依頼等を送っていただけるとよろこびます</small>
   </div>
-  <form id="comment-form" class="comment-form">
+  <p id="comment-availability" role="status">コメントの受付状況を確認しています…</p>
+  <form id="comment-form" class="comment-form" hidden>
     <div class="form-group">
       <label for="email">メールアドレス *</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" maxlength="254" autocomplete="email" required />
     </div>
 
     <div class="form-group">
       <label for="message">コメント *</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+      <textarea id="message" name="message" rows="5" maxlength="5000" required></textarea>
     </div>
 
-    <button type="submit" class="submit-btn">送信</button>
-    <div class="form-message" id="form-message"></div>
+    <div id="comment-turnstile"></div>
+    <button type="submit" class="submit-btn" disabled>送信</button>
+    <div class="form-message" id="form-message" role="status"></div>
   </form>
 </div>
 
 <script>
-  const formEl = document.getElementById('comment-form');
-  const messageDivEl = document.getElementById('form-message');
-
-  if (!(formEl instanceof HTMLFormElement) || !(messageDivEl instanceof HTMLDivElement)) {
-    throw new Error('Comment form elements not found');
+  interface Turnstile {
+    render(container: HTMLElement, options: Record<string, unknown>): string;
+    reset(widget: string): void;
   }
+  const form = document.getElementById('comment-form');
+  const availability = document.getElementById('comment-availability');
+  const messageDiv = document.getElementById('form-message');
+  const challengeContainer = document.getElementById('comment-turnstile');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+  const submit = form?.querySelector('button[type="submit"]');
 
-  const form = formEl;
-  const messageDiv = messageDivEl;
-  let currentMessage = '';
-  let currentType = 'error';
+  if (form instanceof HTMLFormElement && availability instanceof HTMLElement &&
+    messageDiv instanceof HTMLElement && challengeContainer instanceof HTMLElement &&
+    emailInput instanceof HTMLInputElement && messageInput instanceof HTMLTextAreaElement &&
+    submit instanceof HTMLButtonElement) {
+    let token = '';
+    let widget: string | undefined;
+    let challenge: Turnstile | undefined;
+    let sending = false;
+    const showMessage = (message: string, success = false) => {
+      messageDiv.textContent = message;
+      messageDiv.className = `form-message form-message--${success ? 'success' : 'error'}`;
+      messageDiv.style.display = 'block';
+    };
+    const resetChallenge = () => {
+      token = '';
+      submit.disabled = true;
+      if (widget !== undefined) challenge?.reset(widget);
+    };
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-
-    if (!(emailInput instanceof HTMLInputElement) || !(messageInput instanceof HTMLTextAreaElement)) {
-      currentMessage = 'フォーム要素が見つかりません';
-      currentType = 'error';
-      renderMessage();
-      return;
-    }
-
-    const email = emailInput.value.trim();
-    const message = messageInput.value.trim();
-
-    if (!email || !message) {
-      currentMessage = 'すべてのフィールドを入力してください';
-      currentType = 'error';
-      renderMessage();
-      return;
-    }
-
-    // ボタンを無効化
-    const submitBtn = form.querySelector('button[type="submit"]');
-    if (!(submitBtn instanceof HTMLButtonElement)) {
-      currentMessage = '送信ボタンが見つかりません';
-      currentType = 'error';
-      renderMessage();
-      return;
-    }
-    submitBtn.disabled = true;
-    submitBtn.textContent = '送信中...';
-
-    try {
-      const response = await fetch('/api/comments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          message,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        currentMessage = 'コメントを送信しました！';
-        currentType = 'success';
-        renderMessage();
-        form.reset();
-      } else {
-        currentMessage = data.error || 'エラーが発生しました';
-        currentType = 'error';
-        renderMessage();
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (sending || !token || !form.reportValidity()) return;
+      sending = true;
+      submit.disabled = true;
+      submit.textContent = '送信中…';
+      try {
+        const response = await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailInput.value.trim(), message: messageInput.value.trim(), token }),
+        });
+        const result = await response.json();
+        if (response.ok) {
+          showMessage('コメントを送信しました！', true);
+          form.reset();
+        } else {
+          showMessage(typeof result.error === 'string' ? result.error : '送信できませんでした。');
+        }
+      } catch {
+        showMessage('通信エラーが発生しました。時間をおいてお試しください。');
+      } finally {
+        sending = false;
+        submit.textContent = '送信';
+        resetChallenge();
       }
-    } catch (error) {
-      console.error('Error:', error);
-      currentMessage = '通信エラーが発生しました';
-      currentType = 'error';
-      renderMessage();
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = '送信';
-    }
-  });
+    });
 
-  const renderMessage = () => {
-    messageDiv.textContent = currentMessage;
-    messageDiv.className = `form-message form-message--${currentType}`;
-    messageDiv.style.display = 'block';
-
-    if (currentType === 'success') {
-      setTimeout(() => {
-        messageDiv.style.display = 'none';
-      }, 3000);
-    }
-  };
+    const loadForm = async () => {
+      try {
+        const response = await fetch('/api/comments', { cache: 'no-store' });
+        const config = await response.json();
+        if (!response.ok || config.available !== true || typeof config.siteKey !== 'string') {
+          availability.textContent = '現在コメントの受付を停止しています。';
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.onload = () => {
+          challenge = (window as Window & { turnstile?: Turnstile }).turnstile;
+          if (!challenge) {
+            availability.textContent = '確認チェックを読み込めませんでした。';
+            return;
+          }
+          form.hidden = false;
+          availability.hidden = true;
+          widget = challenge.render(challengeContainer, {
+            sitekey: config.siteKey,
+            action: 'comment',
+            callback: (value: string) => { token = value; submit.disabled = sending; },
+            'expired-callback': () => { token = ''; submit.disabled = true; },
+            'error-callback': () => { token = ''; submit.disabled = true; showMessage('確認チェックをやり直してください。'); },
+          });
+        };
+        script.onerror = () => { availability.textContent = '確認チェックを読み込めませんでした。'; };
+        document.head.append(script);
+      } catch {
+        availability.textContent = '現在コメントの受付を停止しています。';
+      }
+    };
+    void loadForm();
+  }
 </script>
 
 <style>
+  .comment-form[hidden] { display: none; }
   .comment-section {
     width: 85%;
     max-width: 740px;

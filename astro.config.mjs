@@ -2,18 +2,19 @@
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import cloudflare from '@astrojs/cloudflare';
+import { unified } from '@astrojs/markdown-remark';
 import { defineConfig } from 'astro/config';
 import remarkBreaks from 'remark-breaks';
 import remarkLinkCard from 'remark-link-card-plus';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
-	adapter: cloudflare(),
+	site: 'https://ulxsth.com',
+	output: 'static',
+	compressHTML: true,
 	integrations: [mdx(), sitemap()],
 	markdown: {
-		remarkPlugins: [
+		processor: unified({ remarkPlugins: [
 			remarkBreaks,
 			[
 				remarkLinkCard,
@@ -23,6 +24,6 @@ export default defineConfig({
 					ignoreExtensions: ['.mp4', '.pdf'],
 				},
 			],
-		],
+		] }),
 	},
 });

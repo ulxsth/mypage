@@ -4,22 +4,32 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/security-headers.mjs",
+    "check": "astro check",
+    "test": "node --test tests/*.test.ts",
+    "audit": "npm audit --audit-level=low",
+    "verify": "npm run check && npm test && npm run build && npm run audit",
+    "dev:pages": "wrangler pages dev dist",
     "preview": "astro preview",
     "astro": "astro",
     "new:article": "node src/scripts/create-post.mjs"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.13",
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
-    "astro": "^5.17.1",
-    "lucide": "^0.577.0",
+    "@astrojs/markdown-remark": "^7.3.0",
+    "@astrojs/mdx": "^8.1.2",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.4",
     "marked": "^17.0.4",
     "remark-breaks": "^4.0.0",
-    "remark-link-card-plus": "^0.7.3",
-    "resend": "^6.9.4",
-    "sharp": "^0.34.3"
-  }
+    "remark-link-card-plus": "^0.8.1",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^24.0.0",
+    "typescript": "^6.0.0",
+    "wrangler": "^4.155.0"
+  },
+  "engines": { "node": ">=24.22.2 <25" }
 }
