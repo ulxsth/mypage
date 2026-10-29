@@ -1,6 +1,6 @@
 # セキュリティと公開の手順
 
-Node.js 24.22.2 を利用する（`.node-version` / `.tool-versions`）。eMudhra 対策を含む修正版に固定している。
+Node.js 24.22.2 を利用する（`.node-version`）。eMudhra 対策を含む修正版に固定している。Cloudflare の旧 asdf インストール経路を避けるため、リポジトリに `.tool-versions` は置かない。
 
 ```sh
 npm ci --ignore-scripts
