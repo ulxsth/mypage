@@ -5,7 +5,7 @@
 *   **Framework**: [Astro](https://astro.build/)
 *   **Hosting**: Cloudflare Pages
 
-Node.js は24.22.2に固定しています。`npm ci --ignore-scripts` の後、`npm run verify` で型・テスト・ビルド・依存監査を実行できます。ブログは静的生成、コメント API は Pages Functions です。
+Node.js は24.22.1以上を利用し、CIとPagesは24.22.1に固定しています。`npm ci --ignore-scripts` の後、`npm run verify` で型・テスト・ビルド・依存監査を実行できます。ブログは静的生成、コメント API は Pages Functions です。
 
 セキュリティ検証・公開・コメント受付の設定は [運用手順](docs/security-and-deploy.md) を参照してください。
 

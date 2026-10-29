@@ -1,6 +1,6 @@
 # セキュリティと公開の手順
 
-Node.js 24.22.2 を利用する（`.node-version`）。eMudhra 対策を含む修正版に固定している。Cloudflare の旧 asdf インストール経路を避けるため、リポジトリに `.tool-versions` は置かない。
+Node.js 24.22.1以上を利用する。CIとCloudflare Pagesは `.node-version` の24.22.1に固定し、eMudhra対策を含む修正版を使う。WSLの開発用Nodeは24.22.2。Cloudflareで使われるnode-buildには24.22.2の定義がまだないため、ビルドは対応済みの24.22.1を選ぶ。リポジトリに `.tool-versions` は置かない。
 
 ```sh
 npm ci --ignore-scripts
@@ -12,7 +12,7 @@ npm run verify
 
 ## 公開
 
-GitHub の main 更新から既存の Cloudflare Pages `mypage` が `npm run build` を実行する。出力は `dist/`。Pages の本番・プレビューの `NODE_VERSION` も24.22.2に合わせる。
+GitHub の main 更新から既存の Cloudflare Pages `mypage` が `npm run build` を実行する。出力は `dist/`。Pages の本番・プレビューの `NODE_VERSION` も24.22.1に合わせる。
 
 最新の Astro Cloudflare adapter は Pages をサポートしないため使わず、ブログは静的生成し、コメントだけを `functions/api/comments.ts` で処理する。Functions をローカルで確認する場合はビルド後に `npm run dev:pages` を使う。
 
