@@ -1,0 +1,6 @@
+# Values are intentionally empty: delivery remains disabled until fully configured.
+RESEND_API_KEY=
+CONTACT_EMAIL=
+CONTACT_FROM=
+TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
